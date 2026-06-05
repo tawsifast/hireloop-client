@@ -1,9 +1,10 @@
 import React from 'react';
+import CompanyProfile from './CompanyProfile';
 
 const CompanyPage = () => {
     return (
         <div>
-            company
+            <CompanyProfile/>
         </div>
     );
 };

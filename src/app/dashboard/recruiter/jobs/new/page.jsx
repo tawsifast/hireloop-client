@@ -271,7 +271,7 @@ export default function PostJobPage() {
               </Fieldset>
 
               {/* DESCRIPTION */}
-              <Fieldset className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <Fieldset className="rounded-2xl border border-white/10 bg-white/2 p-6">
                 <div className="mb-6 flex items-center gap-3">
                   <Briefcase />
                   <h2 className="text-lg font-semibold text-white">
@@ -319,7 +319,7 @@ export default function PostJobPage() {
               </Fieldset>
 
               {/* COMPANY */}
-              <Fieldset className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <Fieldset className="rounded-2xl border border-white/10 bg-white/2 p-6">
                 <div className="mb-6 flex items-center gap-3">
                   <House />
                   <h2 className="text-lg font-semibold text-white">
