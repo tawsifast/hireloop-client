@@ -1,10 +1,11 @@
 import { getComapnyJobs } from "@/lib/api/jobs";
 import { Table, Chip, Button, Tooltip } from "@heroui/react";
 import { Eye, Pencil, TrashBin } from '@gravity-ui/icons';
+import { getLoggedInRecruiterCompany } from "@/lib/api/companies";
 
 const RecruiterJobs = async () => {
-  const companyId = "approved-company-id";
-  const jobs = await getComapnyJobs(companyId);
+  const company = await getLoggedInRecruiterCompany();
+  const jobs = await getComapnyJobs(company._id);
   console.log(jobs, "jobs");
   return (
     <div>

@@ -26,12 +26,12 @@ import {
 import { createCompany } from "@/lib/actions/companies";
 import toast from "react-hot-toast";
 
-export default function CompanyProfile() {
+export default function CompanyProfile({recruiter, recruiterCompany}) {
   // Set to null initially because no company is registered yet
-  const [company, setCompany] = useState(null);
+  const [company, setCompany] = useState(recruiterCompany);
 
   // Controls structural UI conditional transitions
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(recruiter);
   const [isEditing, setIsEditing] = useState(false);
 
   // Asset upload pipeline monitoring
@@ -104,6 +104,7 @@ export default function CompanyProfile() {
     // Inject hosted image link and initial status into dataset schema
     data.logo = uploadedLogoUrl || "https://placehold.co/150";
     data.status = "pending"; // Default status for new registrations
+    data.recruiterId = recruiter.id;
 
     setCompany(data);
 
@@ -118,7 +119,7 @@ export default function CompanyProfile() {
   };
 
   // 1. UNREGISTERED PROMPT VIEW (Initial Active State)
-  if (!isRegistered && !isEditing) {
+  if (!isRegistered?._id && !isEditing) {
     return (
       <div className="bg-[#121214] min-h-screen flex items-center justify-center p-4 text-zinc-100">
         <div className="max-w-md w-full border border-white/10 bg-white/5 rounded-2xl p-8 text-center space-y-6 backdrop-blur-md">
