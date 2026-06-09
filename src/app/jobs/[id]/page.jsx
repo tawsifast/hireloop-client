@@ -8,6 +8,7 @@ import {
   ArrowRight,
   CircleDollar,
 } from "@gravity-ui/icons";
+import Link from "next/link";
 
 const JobDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -75,13 +76,14 @@ const JobDetailsPage = async ({ params }) => {
           </div>
 
           {/* Primary Trigger Submission Action Element */}
-          <Button
+          <Link
+            href={`/jobs/${id}/apply`}
             size="lg"
             className="bg-white text-black font-bold h-12 px-6 rounded-xl hover:bg-zinc-200 transition-colors w-full md:w-auto flex items-center justify-center gap-2"
           >
             <span>Apply Now</span>
             <ArrowRight width={16} height={16} />
-          </Button>
+          </Link>
         </div>
 
         {/* 2. SPECIFICATION MATRIX GRID OVERVIEW */}

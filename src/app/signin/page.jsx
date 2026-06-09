@@ -5,12 +5,15 @@ import Link from "next/link";
 import {Person,Lock,Eye,EyeSlash,ArrowRight,ShieldCheck,} from "@gravity-ui/icons";
 import {Button,Description,FieldError,Form,Input,Label,TextField,} from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
-import { redirect, useRouter } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/"
 
     const onSubmit = async (e) =>{
 
@@ -26,8 +29,7 @@ export default function LoginForm() {
           console.log(data, error);
           if(data){
           toast.success("Login successful")
-          router.push("/");  
-          router.refresh();
+          router.push(redirectTo);  
           }
           if(error){
           toast.error("Login Unsuccessful")
@@ -158,7 +160,7 @@ export default function LoginForm() {
         {/* Footer */}
         <p className="mt-6 text-center text-sm text-zinc-400">
           Don&apos;t have an account?{" "}
-          <Link href={'/signup'} className="cursor-pointer text-blue-500 hover:underline">
+          <Link href={`/signup?redirect=${redirectTo}`} className="cursor-pointer text-blue-500 hover:underline">
             Sign Up
           </Link>
         </p>

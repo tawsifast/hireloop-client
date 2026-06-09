@@ -48,14 +48,14 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/company"
+            href="/dashboard/recruiter/company"
             className="text-gray-300 hover:text-white transition"
           >
             Company
           </Link>
 
           <Link
-            href="/pricing"
+            href="/plans"
             className="text-gray-300 hover:text-white transition"
           >
             Pricing

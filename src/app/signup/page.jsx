@@ -18,7 +18,7 @@ import {
   ArrowRight,
 } from "@gravity-ui/icons";
 import toast from "react-hot-toast";
-import { redirect } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useState } from "react";
@@ -28,6 +28,10 @@ export default function SignUpForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("seeker");
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/"
 
   const onSubmit = async (e) => {
 
@@ -35,16 +39,19 @@ export default function SignUpForm() {
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries());
     console.log(user, "user");
+    const plan = role === 'seeker' ? "seeker_free" : "recruiter-free"
     const { data, error } = await authClient.signUp.email({
       email: user.email,
       password: user.password,
       name: user.name,
       image: user.image,
       role: user.role,
+      plan,
     });
     console.log(data, error);
     if (data) {
       toast.success("Signup successful");
+      router.push(redirectTo);  
     }
     if (error) {
       toast.error("Signup Unsuccessful");
@@ -272,7 +279,7 @@ export default function SignUpForm() {
         <p className="mt-6 text-center text-sm text-zinc-400">
           Already have an account?{" "}
           <Link
-            href={"/signin"}
+            href={`/signin?redirect=${redirectTo}`}
             className="cursor-pointer text-blue-500 hover:underline"
           >
             Login
