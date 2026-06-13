@@ -110,16 +110,18 @@ export default function CompanyProfile({recruiter, recruiterCompany}) {
 
     const payload = await createCompany(data);
     if(payload.insertedId){
-        toast.success("company profile created successfully")
+      const savedCompany = {...data, _id: payload.insertedId};
+      setCompany(savedCompany)
+      toast.success("company profile created successfully")
+      setIsRegistered(true);
+      setIsEditing(false);
+      console.log("Saving Normalized Company Dataset: ", savedCompany);
     }
 
-    setIsRegistered(true);
-    setIsEditing(false);
-    console.log("Saving Normalized Company Dataset: ", data);
   };
 
   // 1. UNREGISTERED PROMPT VIEW (Initial Active State)
-  if (!isRegistered?._id && !isEditing) {
+  if (!isRegistered && !isEditing) {
     return (
       <div className="bg-[#121214] min-h-screen flex items-center justify-center p-4 text-zinc-100">
         <div className="max-w-md w-full border border-white/10 bg-white/5 rounded-2xl p-8 text-center space-y-6 backdrop-blur-md">

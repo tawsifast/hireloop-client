@@ -90,7 +90,9 @@ export default function PostJobForm({company}) {
             </p>
           </div>
 
-          <Form
+        {company.status !== "Approved" && <div className="text-center p-2">Wait for approval</div>}
+
+          {company.status === "Approved" && <Form
             onSubmit={handleSubmit}
             validationBehavior="native"
             className="w-full"
@@ -375,7 +377,7 @@ export default function PostJobForm({company}) {
                 Publish Job
               </Button>
             </div>
-          </Form>
+          </Form>}
         </div>
       </div>
     </div>

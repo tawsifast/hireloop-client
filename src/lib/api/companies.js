@@ -1,6 +1,9 @@
 import { serverFetch } from "../core/server"
 import { getUserSession } from "../core/session"
 
+export const getCompanies = async() =>{
+    return serverFetch(`/companies`)
+}
 export const getRecruiterCompany = async(recruiterId) =>{
     return serverFetch(`/my/companies?recruiterId=${recruiterId}`)
 }
