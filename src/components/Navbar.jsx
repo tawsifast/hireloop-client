@@ -36,7 +36,7 @@ const Navbar = () => {
         },
       ]
     : navLinks;
-    console.log(finalNavLinks,"jjjn");
+    // console.log(finalNavLinks,"jjjn");
   return (
     <nav className="w-full bg-[#0f0f12] py-3 px-6 relative z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">

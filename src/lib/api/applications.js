@@ -1,5 +1,5 @@
-import { serverFetch } from "../core/server"
+import { protectedFetch } from "../core/server"
 
 export const getApplicationsByApplicant = async (applicantId) =>{
-    return serverFetch(`/applications?applicantId=${applicantId}`)
+    return protectedFetch(`/applications?applicantId=${applicantId}`)
 }
